@@ -7,6 +7,7 @@ import Layout from "./layout"
 import ItemTags from "./item-tags"
 import Seo from "./seo"
 import PostFooter from "./post-footer"
+import { Location } from '@reach/router';
 
 type PostProps = {
   data: {
@@ -70,14 +71,11 @@ const Post = ({ data: { post } }: PostProps) => (
       <MDXRenderer>{post.body}</MDXRenderer>
     </section>
     <Disqus
-        config={{
-          /* Replace PAGE_URL with your post's canonical URL variable */
-          url: window.location.href,
-          /* Replace PAGE_IDENTIFIER with your page's unique identifier variable */
-          identifier: post.slug,
-          /* Replace PAGE_TITLE with the title of the page */
-          title: post.title,
-        }}
+      config={{
+        url: Location,
+        identifier: post.slug,
+        title: post.title,
+      }}
     />
     <PostFooter post={post} />
   </Layout>
