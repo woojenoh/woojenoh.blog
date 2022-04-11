@@ -7,7 +7,6 @@ import Layout from "./layout"
 import ItemTags from "./item-tags"
 import Seo from "./seo"
 import PostFooter from "./post-footer"
-import { Location } from '@reach/router';
 
 type PostProps = {
   data: {
@@ -33,12 +32,13 @@ type PostProps = {
       }
     }
   }
+  location: Location;
 }
 
 const px = [`32px`, `16px`, `8px`, `4px`]
 const shadow = px.map((v) => `rgba(0, 0, 0, 0.15) 0px ${v} ${v} 0px`)
 
-const Post = ({ data: { post } }: PostProps) => (
+const Post = ({ data: { post }, location }: PostProps) => (
   <Layout>
     <Seo
       title={post.title}
@@ -72,8 +72,8 @@ const Post = ({ data: { post } }: PostProps) => (
     </section>
     <Disqus
       config={{
-        url: Location,
-        identifier: post.slug,
+        url: location.href,
+        identifier: location.pathname,
         title: post.title,
       }}
     />
