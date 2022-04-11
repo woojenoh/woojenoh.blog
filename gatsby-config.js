@@ -128,6 +128,21 @@ module.exports = {
           shortname: `woojenoh`
       }
     },
+    {
+      resolve: `gatsby-plugin-google-gtag`,
+      options: {
+          trackingIds: [
+            `G-F9X3CFQ3LG`
+          ],
+          pluginConfig: {
+            head: true,
+            exclude: [
+              "/example",
+              "/example-2"
+            ]
+          }
+      },
+    },
     `gatsby-plugin-gatsby-cloud`,
     shouldAnalyseBundle && {
       resolve: `gatsby-plugin-webpack-bundle-analyser-v2`,
