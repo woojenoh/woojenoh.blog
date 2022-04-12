@@ -130,6 +130,7 @@ module.exports = {
           }
       },
     },
+    `gatsby-plugin-robots-txt`,
     `gatsby-plugin-gatsby-cloud`,
     shouldAnalyseBundle && {
       resolve: `gatsby-plugin-webpack-bundle-analyser-v2`,
