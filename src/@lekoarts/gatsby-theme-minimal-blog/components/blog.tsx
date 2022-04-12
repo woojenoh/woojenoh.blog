@@ -36,7 +36,7 @@ const Blog = ({ posts }: PostsProps) => {
           sx={(t) => ({ ...t.styles?.a, variant: `links.secondary`, marginY: 2 })}
           to={replaceSlashes(`/${basePath}/${tagsPath}`)}
         >
-          View all tags
+          모든 태그 보기
         </Link>
       </Flex>
       <Listing posts={posts} sx={{ mt: [4, 5] }} />

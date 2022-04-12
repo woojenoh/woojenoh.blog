@@ -32,8 +32,8 @@ const Homepage = ({ posts }: PostsProps) => {
   return (
     <Layout>
       <h1 sx={visuallyHidden}>{siteTitle}</h1>
-      <Title text="Latest Posts">
-        <Link to={replaceSlashes(`/${basePath}/${blogPath}`)}>Read all posts</Link>
+      <Title text="최근에 작성된 글">
+        <Link to={replaceSlashes(`/${basePath}/${blogPath}`)}>모든 글 보기</Link>
       </Title>
       <Listing posts={posts} showTags={false} />
     </Layout>
