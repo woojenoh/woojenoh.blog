@@ -10,7 +10,7 @@ module.exports = {
     siteUrl: `https://woojenoh.blog`,
     siteDescription: `제노로그`,
     siteLanguage: `ko`,
-    siteImage: `/banner.jpg`,
+    siteImage: `/banner.png`,
     author: `woojenoh`,
   },
   plugins: [
