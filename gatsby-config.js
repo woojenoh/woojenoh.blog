@@ -29,8 +29,8 @@ module.exports = {
         ],
         externalLinks: [
           {
-            name: `Github`,
-            url: `https://github.com/woojenoh`,
+            name: `Email`,
+            url: `mailto:woojenoh@gmail.com`,
           }
         ],
         formatString: 'YYYY.MM.DD',
