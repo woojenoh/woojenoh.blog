@@ -25,7 +25,7 @@ const Tags = ({ list }: PostsProps) => {
         Tags
       </Heading>
       <Box mt={[4, 5]}>
-        {list.filter(item => item.fieldValue !== 'Example').map((listItem) => (
+        {list.map((listItem) => (
           <Flex key={listItem.fieldValue} mb={[1, 1, 2]} sx={{ alignItems: `center` }}>
             <Link
               sx={(t) => ({ ...t.styles?.a, variant: `links.listItem`, mr: 2 })}
