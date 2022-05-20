@@ -1,0 +1,92 @@
+---
+title: 핀터레스트(Masonry) 스타일 레이아웃을 만드는 세 가지 방법
+date: 2019-03-22
+tags:
+  - 핀터레스트
+  - Masonry
+banner: ./banner.jpeg
+---
+
+핀터레스트(Pinterest) 스타일 레이아웃 또는 Masonry 레이아웃이라 불리는 디자인이 있다. 이름에서도 알 수 있듯 핀터레스트에서 쓰는 레이아웃으로 유명한 디자인이다.
+
+![핀터레스트](./banner.jpeg)
+
+바로 이렇게 벽돌을 쌓듯 차곡차곡 비율에 맞게 조적식(Masonry)으로 구성된 레이아웃을 말한다. **어떤 비율의 카드가 들어와도 공간을 알맞게 찾아간다**는 점에서 일반적인 카드 레이아웃과는 차이가 있다.
+
+사실 라이브러리 쓰면 아주 간단하게 만들 수 있다. 가장 유명한 게 [Masonry](https://masonry.desandro.com/)다. 근데 이걸 쓸 생각이었으면 포스팅할 필요가 없었겠지. 라이브러리 없이 직접 만들어 보았다.
+
+시행착오를 겪으며 알아낸 결론부터 말하면 크게 세 가지 정도의 방식이 있다.
+
+1. CSS Flexbox
+2. CSS Grid + 자바스크립트로 높이 계산
+3. CSS Transform + 자바스크립트로 위치 계산
+
+우선 1번, CSS Flexbox만을 이용해 만드는 방식이다.
+
+<iframe
+  height="300"
+  style="width: 100%;"
+  scrolling="no"
+  title="Masonry-Flexbox"
+  src="https://codepen.io/woojenoh/embed/moQYvR?default-tab=html%2Cresult"
+  frameborder="no"
+  loading="lazy"
+  allowtransparency="true"
+  allowfullscreen="true"
+>
+  See the Pen{" "}
+  <a href="https://codepen.io/woojenoh/pen/moQYvR">Masonry-Flexbox</a> by WOOJE
+  (<a href="https://codepen.io/woojenoh">@woojenoh</a>) on{" "}
+  <a href="https://codepen.io">CodePen</a>.
+</iframe>
+
+가장 간단하지만, 한계가 있는 방식이다. 카드를 수직(Vertical) 방향으로 정렬하려 한다면 가장 간단하고 알맞은 방식일 수 있으나 이 방식으로는 **수평(Horizontal)하게 정렬할 수는 없기 때문이다.** (카드마다 붙은 인덱스 참고) Flex의 방향을 수직이 아닌 수평으로 두면 카드 크기가 다를 경우 중간중간에 공간이 빈다.
+
+그래서 찾은 방식이 CSS Grid와 자바스크립트를 이용한 2번 방식이다.
+
+<iframe
+  height="300"
+  style="width: 100%;"
+  scrolling="no"
+  title="Masonry-Grid&amp;JS"
+  src="https://codepen.io/woojenoh/embed/ywQmvg?default-tab=html%2Cresult"
+  frameborder="no"
+  loading="lazy"
+  allowtransparency="true"
+  allowfullscreen="true"
+>
+  See the Pen{" "}
+  <a href="https://codepen.io/woojenoh/pen/ywQmvg">Masonry-Grid&amp;JS</a> by
+  WOOJE (<a href="https://codepen.io/woojenoh">@woojenoh</a>) on{" "}
+  <a href="https://codepen.io">CodePen</a>.
+</iframe>
+
+grid-gap으로 row에 대한 높이를 설정하고, 자바스크립트로 이미지 각각의 높이를 불러온 뒤, 해당하는 이미지가 차지할 row의 개수를 계산해 grid-row-end에 넣어주는 방식이다. (이미지 크기가 300px이고 row의 높이가 10px이라면 span 30, 즉 30개의 row를 차지하게 계산하면 된다.)
+
+이 방식은 카드의 개수가 적을 경우 고려해볼 만한 방식이다. 하지만 개수가 많으면 문제가 된다. 일단 grid가 많으면 많아질수록 성능이 급격하게 저하되는 것은 물론이고, 결정적으로 이러한 성능 저하 때문에 브라우저에서 최대 row의 개수를 이미 정해두었기 때문이다. 크롬의 경우 row의 개수는 999개가 최대라 그 이상의 내용은 잘리게 된다.
+
+그 때문에 적은 수의 카드를 배치할 경우는 쓸 수 있는 방식이지만, **카드가 수백, 수천 개 들어갈 수도 있다면 사용할 수 없는 방식이다.** 이쯤 되니 Pinterest나 Masonry 라이브러리가 어떤 방식으로 레이아웃을 구현한 건지 궁금해졌다.
+
+Pinterest와 Masonry 라이브러리는 3번 방식을 사용하고 있었다. (겉에서 보기에는 그랬다.)
+
+<iframe
+  height="300"
+  style="width: 100%;"
+  scrolling="no"
+  title="Masonry"
+  src="https://codepen.io/woojenoh/embed/MxZgBP?default-tab=html%2Cresult"
+  frameborder="no"
+  loading="lazy"
+  allowtransparency="true"
+  allowfullscreen="true"
+>
+  See the Pen <a href="https://codepen.io/woojenoh/pen/MxZgBP">Masonry</a> by
+  WOOJE (<a href="https://codepen.io/woojenoh">@woojenoh</a>) on{" "}
+  <a href="https://codepen.io">CodePen</a>.
+</iframe>
+
+이 방식은 각각의 **이미지가 들어갈 위치를 계산해서 translate나 top, left로 위치시켜주는 방법**이다. Pinterest는 translate, Masonry는 top, left를 사용하는 것 같은데, 성능은 translate가 더 좋은 걸로 알고 있다.
+
+각 이미지가 들어갈 위치를 계산하는 방법은 여러 가지가 있겠지만, 난 imgStack이라는 배열을 만들어 계산했다. (Stack이지만 물론 실제 자료구조가 Stack은 아니고, 이미지를 위에서부터 쌓는다는 의미로 그렇게 지었다.) imgStack은 Column의 개수에 해당하는 길이를 가지는 배열이다. (각 요소의 시작 값은 0) 이미지의 위치는 imgStack의 가장 작은 값과 그 인덱스를 보고 정한다. 위치를 잡아 CSS를 반영하면, imgStack의 가장 작은 값에 해당 이미지의 높이를 더한다. 이를 반복하다 마지막 차례가 오면, imgStack의 가장 큰 값을 보고 이미지를 담은 Container의 높이를 구한다.
+
+위 두 가지 방법보다는 복잡하지만 그래도 어렵지는 않다. 그리고 imgStack의 길이와 각 Column의 width만 조절하면 반응형 레이아웃을 만드는 것도 어렵지 않다.
