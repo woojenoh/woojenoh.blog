@@ -8,9 +8,9 @@ module.exports = {
     siteTitleAlt: `제노로그`,
     siteHeadline: `제노로그`,
     siteUrl: `https://woojenoh.blog`,
-    siteDescription: `제노로그`,
+    siteDescription: `개발 경험을 기록합니다.`,
     siteLanguage: `ko`,
-    siteImage: `/banner.png`,
+    siteImage: `/banner.jpg`,
     author: `woojenoh`,
   },
   plugins: [
@@ -21,6 +21,10 @@ module.exports = {
           {
             title: `Blog`,
             slug: `/blog`,
+          },
+          {
+            title: `Tags`,
+            slug: `/tags`,
           },
           {
             title: `About`,
