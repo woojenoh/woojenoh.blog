@@ -17,6 +17,7 @@ module.exports = {
     {
       resolve: `@lekoarts/gatsby-theme-minimal-blog`,
       options: {
+        mdx: false,
         navigation: [
           {
             title: `Blog`,
@@ -40,6 +41,24 @@ module.exports = {
         formatString: 'YYYY.MM.DD',
       },
     },
+    { 
+      resolve: `gatsby-plugin-mdx`, 
+      options: { 
+        extensions: [`.mdx`, `.md`], 
+        gatsbyRemarkPlugins: [ 
+          { 
+            resolve: `gatsby-remark-images`, 
+            options: { 
+              maxWidth: 960, 
+              quality: 90, 
+              linkImagesToOriginal: false, 
+            }, 
+          },
+          `gatsby-remark-copy-linked-files`,
+          'gatsby-remark-autolink-headers'
+        ],
+      },
+    },
     {
       resolve: `gatsby-omni-font-loader`,
       options: {
@@ -61,7 +80,7 @@ module.exports = {
       options: {
         name: `제노로그`,
         short_name: `제노로그`,
-        description: `제노로그`,
+        description: `개발 경험을 기록합니다.`,
         start_url: `/`,
         background_color: `#fff`,
         display: `standalone`,
