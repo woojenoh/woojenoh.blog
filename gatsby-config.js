@@ -10,7 +10,7 @@ module.exports = {
     siteUrl: `https://woojenoh.blog`,
     siteDescription: `개발 경험을 기록합니다.`,
     siteLanguage: `ko`,
-    siteImage: `/banner.jpg`,
+    siteImage: `/banner.png`,
     author: `woojenoh`,
   },
   plugins: [
