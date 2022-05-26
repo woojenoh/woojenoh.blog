@@ -1,6 +1,6 @@
-require(`dotenv`).config()
+require(`dotenv`).config();
 
-const shouldAnalyseBundle = process.env.ANALYSE_BUNDLE
+const shouldAnalyseBundle = process.env.ANALYSE_BUNDLE;
 
 module.exports = {
   siteMetadata: {
@@ -36,26 +36,26 @@ module.exports = {
           {
             name: `Email`,
             url: `mailto:woojenoh@gmail.com`,
-          }
+          },
         ],
-        formatString: 'YYYY.MM.DD',
+        formatString: "YYYY.MM.DD",
       },
     },
-    { 
-      resolve: `gatsby-plugin-mdx`, 
-      options: { 
-        extensions: [`.mdx`, `.md`], 
-        gatsbyRemarkPlugins: [ 
-          { 
-            resolve: `gatsby-remark-images`, 
-            options: { 
-              maxWidth: 960, 
-              quality: 90, 
-              linkImagesToOriginal: false, 
-            }, 
+    {
+      resolve: `gatsby-plugin-mdx`,
+      options: {
+        extensions: [`.mdx`, `.md`],
+        gatsbyRemarkPlugins: [
+          {
+            resolve: `gatsby-remark-images`,
+            options: {
+              maxWidth: 960,
+              quality: 90,
+              linkImagesToOriginal: false,
+            },
           },
           `gatsby-remark-copy-linked-files`,
-          'gatsby-remark-autolink-headers'
+          "gatsby-remark-autolink-headers",
         ],
       },
     },
@@ -106,8 +106,8 @@ module.exports = {
           {
             serialize: ({ query: { site, allPost } }) =>
               allPost.nodes.map((post) => {
-                const url = site.siteMetadata.siteUrl + post.slug
-                const content = `<p>${post.excerpt}</p><div style="margin-top: 50px; font-style: italic;"><strong><a href="${url}">Keep reading</a>.</strong></div><br /> <br />`
+                const url = site.siteMetadata.siteUrl + post.slug;
+                const content = `<p>${post.excerpt}</p><div style="margin-top: 50px; font-style: italic;"><strong><a href="${url}">Keep reading</a>.</strong></div><br /> <br />`;
 
                 return {
                   title: post.title,
@@ -116,7 +116,7 @@ module.exports = {
                   url,
                   guid: url,
                   custom_elements: [{ "content:encoded": content }],
-                }
+                };
               }),
             query: `
               {
@@ -139,18 +139,16 @@ module.exports = {
     {
       resolve: `gatsby-plugin-disqus`,
       options: {
-          shortname: `woojenoh`
-      }
+        shortname: `woojenoh`,
+      },
     },
     {
       resolve: `gatsby-plugin-google-gtag`,
       options: {
-          trackingIds: [
-            `G-F9X3CFQ3LG`
-          ],
-          pluginConfig: {
-            head: true
-          }
+        trackingIds: [`G-F9X3CFQ3LG`],
+        pluginConfig: {
+          head: true,
+        },
       },
     },
     `gatsby-plugin-robots-txt`,
@@ -164,4 +162,4 @@ module.exports = {
       },
     },
   ].filter(Boolean),
-}
+};
