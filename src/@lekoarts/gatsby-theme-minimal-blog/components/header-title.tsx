@@ -5,14 +5,8 @@ import { jsx } from "theme-ui";
 import replaceSlashes from "../utils/replaceSlashes";
 import useSiteMetadata from "../hooks/use-site-metadata";
 import useMinimalBlogConfig from "../hooks/use-minimal-blog-config";
-import Logo from "../svg/logo.svg";
-import LogoDark from "../svg/logo-dark.svg";
 
-type Props = {
-  isDark: boolean;
-};
-
-const HeaderTitle = ({ isDark }: Props) => {
+const HeaderTitle = () => {
   const { siteTitle } = useSiteMetadata();
   const { basePath } = useMinimalBlogConfig();
 
@@ -23,7 +17,6 @@ const HeaderTitle = ({ isDark }: Props) => {
       sx={{ color: `heading`, textDecoration: `none` }}
     >
       <div sx={{ my: 0, fontWeight: `medium`, fontSize: [3, 4] }}>
-        {isDark ? <LogoDark sx={iconStyle} /> : <Logo sx={iconStyle} />}
         {siteTitle}
       </div>
     </Link>
